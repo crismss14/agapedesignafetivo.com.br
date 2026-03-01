@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Define a codificação de caracteres -->
+  <meta charset="UTF-8">
+
+  <!-- Título que aparece na aba do navegador -->
+  <title>Ágape Design Afetivo</title>
+
+  <!-- favicon.png → AQUI VAI O ÍCONE DO SEU SITE (imagem pequena que aparece na aba) -->
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- Conexão com Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonte personalizada usada no título -->
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+
+  <!-- Responsividade para celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Descrição que aparece no Google -->
+  <meta name="description" content="Convites digitais personalizados.">
+
+  <!-- Nome do autor do site -->
+  <meta name="author" content="Ágape Design Afetivo">
+
+  <style>
+    /* ===== ESTILO GERAL DO SITE ===== */
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #efe9ff; /* Cor de fundo principal */
+      color: #4b3f72; /* Cor do texto */
+      text-align: center;
+    }
+
+    /* ===== CABEÇALHO ===== */
+    header {
+      padding: 70px 20px 50px;
+    }
+
+    header img {
+      max-width: 260px; /* TAMANHO DA SUA LOGO */
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      margin-bottom: 10px;
+      font-family: 'Yusei Magic', sans-serif; /* Fonte personalizada */
+    }
+
+    p {
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    /* ===== BOTÃO WHATSAPP ===== */
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #8f8cff, #8f8cff);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05); /* Efeito ao passar o mouse */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* ===== SEÇÃO DE SERVIÇOS ===== */
+    section {
+      background: #e3dcff;
+      padding: 60px 20px;
+      border-radius: 50px 50px 0 0;
+      margin-top: 40px;
+    }
+
+    footer {
+      background: #efe9ff;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* ===== GALERIA COM EFEITO FADE ===== */
+    .fade-galeria {
+      background: #efe9ff;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 80px 20px;
+      margin-top: 0px;
+    }
+
+    /* TAMANHO DOS CONVITES QUE ESTÃO NA GALERIA */
+    .galeria-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 650px; /* ALTURA DA IMAGEM */
+      margin: 40px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .galeria-container img {
+      position: absolute;
+      width: 90%;
+      height: 650px;
+      object-fit: cover;
+      border-radius: 20px;
+      opacity: 0;
+      animation: fadeLoop 20s infinite; /* Animação automática */
+    }
+
+    /* Tempo de cada imagem */
+    .galeria-container img:nth-child(1) { animation-delay: 0s; }
+    .galeria-container img:nth-child(2) { animation-delay: 5s; }
+    .galeria-container img:nth-child(3) { animation-delay: 10s; }
+    .galeria-container img:nth-child(4) { animation-delay: 15s; }
+
+    /* Animação de fade */
+    @keyframes fadeLoop {
+      0% { opacity: 0; }
+      5% { opacity: 1; }
+      25% { opacity: 1; }
+      30% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* ===== BRILHOS FLUTUANTES ===== */
+    #brilhosCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none; /* Não interfere nos cliques */
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Canvas onde os brilhos são desenhados -->
+<canvas id="brilhosCanvas"></canvas>
+
+<!-- brilho.png → AQUI VAI A IMAGEM DO BRILHO (estrelinha transparente em PNG) -->
+<img id="brilhoImg" src="brilho.png" style="display:none;">
+
+<header>
+  <!-- logo.png → AQUI VAI SUA LOGO -->
+  <img src="logo.png" alt="SUA LOGO AQUI">
+
+  <h1>Ágape Design Afetivo</h1>
+
+  <p>
+    Convites digitais e retrospectivas personalizadas ✨
+  </p>
+
+  <!-- LINK DO SEU WHATSAPP (troque o número se quiser) -->
+  <a class="btn" href="https://wa.me/5548996612459" target="_blank">
+    📱 Falar comigo no WhatsApp
+  </a>
+</header>
+
+<section>
+  <h2>Nossos Serviços💕</h2>
+
+  <p>
+    🎬 RETROSPECTIVAS ANIMADAS<br>
+    🎉 CONVITES ANIMADOS<br>
+    📱 CONVITES INTERATIVOS E TRADICIONAIS
+  </p>
+</section>
+
+<section class="fade-galeria">
+
+  <div class="galeria-container">
+      <!-- foto1.jpg → COLOQUE A FOTO DO SEU PRIMEIRO CONVITE -->
+      <img src="foto1.jpg" alt="Convite 1">
+
+      <!-- foto2.jpg → SEGUNDO CONVITE -->
+      <img src="foto2.jpg" alt="Convite 2">
+
+      <!-- foto3.jpg → TERCEIRO CONVITE -->
+      <img src="foto3.jpg" alt="Convite 3">
+
+      <!-- foto4.jpg → QUARTO CONVITE -->
+      <img src="foto4.jpg" alt="Convite 4">
+  </div>
+</section>
+
+<script>
+
+// ===== SISTEMA DE BRILHOS ANIMADOS =====
+
+const canvas = document.getElementById('brilhosCanvas');
+const ctx = canvas.getContext('2d');
+const brilhoImg = document.getElementById('brilhoImg');
+
+// Define tamanho do canvas igual à tela
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let brilhos = [];
+const MAX_BRILHOS = 12; // Quantidade máxima de brilhos
+
+// Cria um novo brilho
+function criarBrilho() {
+  brilhos.push({
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 25 + 15,
+    opacity: Math.random() * 0.6 + 0.4,
+    dx: (Math.random() - 0.5) * 0.2,
+    dy: (Math.random() - 0.5) * 0.2,
+    dOpacity: (Math.random() - 0.5) * 0.015
+  });
+
+  if (brilhos.length > MAX_BRILHOS) brilhos.shift();
+}
+
+// Função que anima os brilhos
+function animarBrilhos() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  brilhos.forEach(b => {
+    b.x += b.dx;
+    b.y += b.dy;
+    b.opacity += b.dOpacity;
+
+    const x = (b.x / 100) * canvas.width;
+    const y = (b.y / 100) * canvas.height;
+
+    ctx.save();
+    ctx.globalAlpha = b.opacity;
+    ctx.drawImage(brilhoImg, x - b.size/2, y - b.size/2, b.size, b.size);
+    ctx.restore();
+  });
+
+  requestAnimationFrame(animarBrilhos);
+}
+
+// Inicia os brilhos
+for (let i = 0; i < MAX_BRILHOS; i++) criarBrilho();
+brilhoImg.onload = animarBrilhos;
+
+
+// 1. Bloquear o botão direito do mouse
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // 2. Bloquear atalhos de teclado (Ctrl+U, Ctrl+S, F12, etc.)
+  document.addEventListener('keydown', function (event) {
+    // Tecla 'u' (code 85) + CTRL
+    if (event.ctrlKey && event.keyCode === 85) {
+      event.preventDefault();
+    }
+    // Tecla 's' (code 83) + CTRL (evita salvar a página)
+    if (event.ctrlKey && event.keyCode === 83) {
+      event.preventDefault();
+    }
+    // Tecla F12 (code 123)
+    if (event.keyCode === 123) {
+      event.preventDefault();
+    }
+  });
+
+  
+</script>
+
+<footer>
+  © 2026 • ÁGAPE DESIGN AFETIVO • Feito com amor 💖
+</footer>
+
+  
+</body>
+</html>
