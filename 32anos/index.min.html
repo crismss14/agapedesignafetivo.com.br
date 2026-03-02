@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="pt-br"><head><!-- Configuração de caracteres --><meta charset="UTF-8"><!-- Responsividade para dispositivos móveis --><meta name="viewport" content="width=device-width,initial-scale=1"><!-- Título da página --><title>Meus 32 anos - Criis</title><!-- Importação de fontes do Google Fonts --><link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet"><!-- Biblioteca de confete para efeitos visuais --><script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script><!-- Arquivo de estilos principal --><link rel="stylesheet" href="style.css?v=final_ok"></head><body><main class="convite-main"><div class="convite-stage"><!-- ================= ÁUDIOS ================= --><!-- Som de clique --><audio id="som-clique" src="silencio.mp3"></audio><!-- Som da porta abrindo --><audio id="som-porta" src="porta_abrindo.mp3"></audio><!-- Música da festa (loop infinito) --><audio id="musica-festa" src="musica_festa.mp3" loop></audio><!-- ================= VÍDEO DE FUNDO ================= --><!-- Container do vídeo --><div id="video-container"><!-- Vídeo automático, mudo e em loop --><video autoplay muted loop playsinline id="video-bg"><source src="video_fundo.mp4" type="video/mp4"></video></div><!-- ================= CLARÃO E TEXTO PRINCIPAL ================= --><!-- Efeito de clarão animado --><div id="clarão-luxo"></div><!-- Texto principal da abertura --><div id="explosao-texto">MEUS 32 ANOS</div><!-- ================= PORTA / SELO ================= --><div class="stage" id="main-stage"><div class="porta-castelo" id="portal"><!-- Container de suspense com imagem interna --><div class="suspense-container"><div class="foto-interna"></div></div><!-- Banda lateral esquerda --><div class="banda banda-esq"><span class="texto-aba">s e j a&nbsp; b e m&nbsp; v i n d o</span></div><!-- Selo central que inicia a magia --><div id="selo" onclick="iniciarMagia()">CS</div><!-- Banda lateral direita --><div class="banda banda-dir"><span class="texto-aba">m e u s&nbsp; 3 2&nbsp; a n o s</span></div></div></div><!-- ================= ETAPA FINAL ================= --><div id="etapa-final"><!-- CARROSSEL DE FOTOS --><div class="carrossel-container"><div class="carrossel-slides"><!-- Fotos do carrossel --> <img src="foto1.jpg" class="foto-carrossel active"> <img src="foto2.jpg" class="foto-carrossel"> <img src="foto3.jpg" class="foto-carrossel"></div></div><!-- IMAGEM PRINCIPAL DO CONVITE --><div class="convite-imagem"><img src="convite.png" alt="Convite Criis 32 anos"><!-- BOTÃO INVISÍVEL PARA WHATSAPP --> <a href="https://wa.me/5548996612459" class="btn btn-whats" target="_blank"></a><!-- BOTÃO INVISÍVEL PARA GOOGLE MAPS --> <a href="https://maps.app.goo.gl/E3GvXtBpPrdE4Zkg6" class="btn btn-maps" target="_blank"></a><!-- BOTÃO INVISÍVEL PARA PRESENTES --><div class="btn btn-presente" onclick="abrirPresentes()"></div></div></div><!-- ================= CONTROLE DE SOM ================= --><!-- Botão para alternar som --><div id="controle-som" onclick="alternarSom()">🔊</div><!-- Script externo principal --><script src="script.js"></script></div></main><!-- ================= POPUP PIX ================= --><!-- Overlay escuro de fundo --><div id="overlayPix" class="overlayPix"><!-- Caixa do popup --><div class="pix-box"><!-- Imagem com sugestão de presente --> <img src="presentes.png" alt="Sugestão de presente / Pix"><!-- Área clicável para copiar Pix --><div class="btn-pix"></div><!-- Botão fechar --> <button class="fecharPix" onclick="fecharPix()">×</button></div></div><!-- Toast de confirmação --><div id="toastPix">✨ Chave Pix copiada!</div>// clicar na imagem copia o pix pixImage.addEventListener("click", copiarPix); // botão invisível abre o pix document.querySelector(".btn-presente") .addEventListener("click", abrirPix);<script>// ================= CONFIGURAÇÃO DO PIX =================
+  
+  const chavePix = "48996612459"; // 🔑 SUA CHAVE PIX AQUI
+
+  // Elementos do DOM
+  const overlayPix = document.getElementById("overlayPix");
+  const toastPix   = document.getElementById("toastPix");
+  const btnPix = document.querySelector(".btn-pix");
+
+  // Função para abrir o popup Pix
+  function abrirPix() {
+    overlayPix.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+
+  // Função para fechar o popup Pix
+  function fecharPix() {
+    overlayPix.style.display = "none";
+    document.body.style.overflow = "";
+  }
+
+  // Função para copiar a chave Pix
+  async function copiarPix() {
+    try {
+      // Método moderno
+      await navigator.clipboard.writeText(chavePix);
+    } catch {
+      // Método alternativo para navegadores antigos
+      const t = document.createElement("textarea");
+      t.value = chavePix;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand("copy");
+      document.body.removeChild(t);
+    }
+
+    // Exibe mensagem temporária
+    toastPix.style.display = "block";
+    setTimeout(() => {
+      toastPix.style.display = "none";
+    }, 1600);
+  }
+
+  // Clicar no botão copia o Pix
+  btnPix.addEventListener("click", copiarPix);
+
+  // Botão invisível abre o Pix
+  document.querySelector(".btn-presente")
+    .addEventListener("click", abrirPix);
+
+// 1. Bloquear o botão direito do mouse
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // 2. Bloquear atalhos de teclado (Ctrl+U, Ctrl+S, F12, etc.)
+  document.addEventListener('keydown', function (event) {
+    // Tecla 'u' (code 85) + CTRL
+    if (event.ctrlKey && event.keyCode === 85) {
+      event.preventDefault();
+    }
+    // Tecla 's' (code 83) + CTRL (evita salvar a página)
+    if (event.ctrlKey && event.keyCode === 83) {
+      event.preventDefault();
+    }
+    // Tecla F12 (code 123)
+    if (event.keyCode === 123) {
+      event.preventDefault();
+    }
+  });</script></body></html>
