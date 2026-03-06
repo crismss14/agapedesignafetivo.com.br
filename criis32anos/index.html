@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Responsividade para dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meus 32 anos - Criis</title>
+
+    <!-- Importação de fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+
+    <!-- Biblioteca para efeito de confete -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Arquivo CSS com o estilo do site -->
+    <link rel="stylesheet" href="style.css?v=final_ajuste">
+</head>
+<body>
+
+<!-- ÁUDIO -->
+<audio id="som-clique" src="silencio.mp3"></audio> <!-- clique -->
+<audio id="som-porta" src="porta_abrindo.mp3"></audio> <!-- porta -->
+<audio id="musica-festa" src="musica_festa.mp3" loop></audio> <!-- música da festa -->
+
+<!-- =========================
+     CONTAINER PRINCIPAL 9:16
+     ========================= -->
+<div class="convite-main">
+    <div class="convite-stage">
+
+        <!-- Container do vídeo de fundo -->
+        <div id="video-container">
+            <video autoplay muted loop playsinline id="video-bg">
+                <source src="video_fundo.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Efeito de clarão de luz -->
+        <div id="clarão-luxo"></div>
+
+        <!-- Texto que aparece como explosão/efeito -->
+        <div id="explosao-texto">MEUS 32 ANOS</div>
+
+        <!-- Área principal da animação inicial -->
+        <div class="stage" id="main-stage">
+            <!-- Porta do castelo -->
+            <div class="porta-castelo" id="portal">
+                <!-- Container de suspense antes da abertura -->
+                <div class="suspense-container">
+                    <!-- Foto que aparece dentro da porta -->
+                    <div class="foto-interna"></div>
+                </div>
+
+                <!-- Faixa decorativa da esquerda -->
+                <div class="banda banda-esq">
+                    <span class="texto-aba">s e j a b e m v i n d o</span>
+                </div>
+
+                <!-- Selo central que inicia a animação -->
+                <div id="selo" onclick="iniciarMagia()">C</div>
+
+                <!-- Faixa decorativa da direita -->
+                <div class="banda banda-dir">
+                    <span class="texto-aba">m e u s 1 5 a n o s</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Etapa final do site (conteúdo do convite) -->
+        <div id="etapa-final">
+            <!-- Container do carrossel de fotos -->
+            <div class="carrossel-container">
+                <!-- Slides do carrossel -->
+                <div class="carrossel-slides">
+                    <!-- Fotos do carrossel -->
+                    <img src="foto1.jpg" class="foto-carrossel active">
+                    <img src="foto2.jpg" class="foto-carrossel">
+                    <img src="foto3.jpg" class="foto-carrossel">
+                </div>
+            </div>
+
+            <!-- Nome principal da aniversariante -->
+            <h1 class="nomedaaniversariante">Criis</h1>
+
+            <!-- Bloco com informações do evento -->
+            <div class="bloco-info-evento">
+                <!-- Versículo bíblico -->
+                <p class="versiculo">
+                    "A relva murcha, e as flores caem, mas a palavra do nosso Deus permanece para sempre"
+                    <br>
+                    <span>(Isaías 40:8)</span>
+                </p>
+
+                <!-- Data e hora da festa -->
+                <p class="data-hora">01 de Março 2026 às 19h</p>
+
+                <!-- Nome do local do evento -->
+                <p class="local-nome">Ballroom Barra Olímpica</p>
+            </div>
+
+            <!-- Container dos botões redondos -->
+            <div class="container-botoes-redondos">
+                <!-- Botão para abrir o local no mapa -->
+                <div class="item-botao">
+                    <a href="https://maps.app.goo.gl/qYguEdSrZEdTr45q9" target="_blank" class="btn-circular">📍</a>
+                    <span>LOCAL</span>
+                </div>
+
+                <!-- Botão para confirmar presença -->
+                <div class="item-botao">
+                    <a href="https://wa.me/5548996612459?text=Oii%2Cquero%20confirmar%20minha%20presen%C3%A7a%20na%20sua%20festa!%20%E2%9C%A8" target="_blank" class="btn-circular">✅</a>
+                    <span>CONFIRME SUA PRESENÇA</span>
+                </div>
+
+                <!-- Botão para presentes -->
+                <div class="item-botao">
+                    <div class="btn-circular" onclick="abrirPresentes()">🎁</div>
+                    <span>PRESENTES</span>
+                </div>
+            </div>
+
+            <!-- Rodapé com informações adicionais -->
+            <div class="bloco-rodape">
+                <!-- Tipo de traje -->
+                <p>Traje: Esporte fino</p>
+
+                <!-- Prazo para confirmar presença -->
+                <p class="confirmacao-texto">
+                    Confirme a sua presença até dia 01/02/2026
+                </p>
+            </div>
+        </div>
+
+        <!-- Botão para ligar/desligar som -->
+        <div id="controle-som" onclick="alternarSom()">🔊</div>
+    </div> <!-- fim .convite-stage -->
+</div> <!-- fim .convite-main -->
+
+<!-- Popup de presentes -->
+<div id="popup">
+    <div class="popup-box">
+        <button class="fechar-popup" onclick="fecharPresentes()">×</button>
+        <img src="presentes.png" alt="Presentes">
+        <button id="copiarPixBtn" onclick="copiarChavePix()">Copiar chave Pix</button>
+    </div>
+</div>
+
+<!-- Toast PIX -->
+<div id="toastPix">Chave pix copiada ✨</div>
+
+<!-- Arquivo JavaScript que controla animações e interações -->
+<script src="script.js"></script>
+
+<script>
+    // Bloquear botão direito
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Bloquear atalhos de teclado (Ctrl+U, Ctrl+S, F12)
+    document.addEventListener('keydown', function (event) {
+        if (event.ctrlKey && event.keyCode === 85) { event.preventDefault(); }
+        if (event.ctrlKey && event.keyCode === 83) { event.preventDefault(); }
+        if (event.keyCode === 123) { event.preventDefault(); }
+    });
+</script>
+</body>
+</html>
