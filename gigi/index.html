@@ -5,13 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GIOVANNA 4 ANOS</title>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- Biblioteca de confetes -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
+
 :root {
   --primary: #FF69B4;
   --primary-dark: #C71585;
@@ -21,122 +19,109 @@
   --card-pink: #ffe0f0;
 }
 
-/* RESET */
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
   font-family:'Nunito',sans-serif;
   background-color:var(--bg-body);
   color:var(--text-color);
   overflow-x:hidden;
-  line-height:1.5;
 }
 
-/* VÍDEO DE FUNDO */
-.video-background-container { 
-  position:fixed; top:0; left:0; width:100%; height:100%; 
-  z-index:-1; overflow:hidden; 
-}
-.hero-video { width:100%; height:100%; object-fit:cover; opacity:0.9; }
-.video-overlay { position:absolute; top:0; left:0; width:100%; height:100%; 
-  background: linear-gradient(to bottom, rgba(255,166,201,0.3), var(--bg-body)); 
+/* VIDEO FUNDO */
+
+.video-background-container{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
 }
 
-/* PALCO 9:16 */
-.convite-main { 
-  display:flex; justify-content:center; align-items:center; 
-  padding:20px; 
+.hero-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.9;
+}
+
+.video-overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(to bottom, rgba(255,166,201,0.3), var(--bg-body));
+}
+
+/* PALCO */
+
+.convite-main{
+  display:flex;
+  justify-content:center;
+  align-items:center;
   min-height:100vh;
+  padding:20px;
 }
+
 .convite-stage{
   position:relative;
   width:100%;
   max-width:420px;
-  aspect-ratio: 9 / 16;
-  margin:auto;
-  transform: translateY(-50px);
+  aspect-ratio:9/16;
+  transform:translateY(-50px);
 }
 
-/* IMAGEM DO CONVITE CENTRALIZADA */
-.convite-imagem {
+.convite-imagem{
   width:100%;
   height:100%;
-  background: url('convite.png') center no-repeat;
-  background-size: contain;
-  border-radius:20px;
+  background:url('convite.png') center no-repeat;
+  background-size:contain;
   position:absolute;
   top:0;
   left:0;
+  border-radius:20px;
 }
 
-/* BOTÕES SOBRE A IMAGEM */
-.btn-local, .btn-lista, .btn-confirmar { 
+/* BOTÕES MAPA */
+
+.btn-local,
+.btn-lista,
+.btn-confirmar,
+.btn-filtro{
+
   position:absolute;
   width:70px;
   height:70px;
   border-radius:50%;
-  background: transparent;
+  background:transparent;
   cursor:pointer;
 }
-.btn-local { top:71%; left:44%; }
-.btn-lista { top:71%; left:68%; }
-.btn-confirmar { top:71%; left:20%; }
 
-/* MURAL DE RECADOS */
-.card-box { 
-  background: var(--white); border-radius:30px; padding:30px; 
-  margin:25px auto; max-width:500px; 
-  box-shadow:0 10px 25px rgba(255,105,180,0.15);
-  text-align:center; 
+/* POSIÇÕES */
+
+.btn-local{top:71%;left:32%;}
+.btn-lista{top:71%;left:52%;}
+.btn-confirmar{top:71%;left:12%;}
+.btn-filtro{top:71%;left:73%;}
+
+/* CARD SCROLL */
+
+.card-scroll{
+  background:#fff;
+  text-align:center;
+  max-width:320px;
+  margin:-90px auto 20px auto;
+  border-radius:20px;
+  padding:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  animation:floatCard 1.5s infinite alternate;
 }
 
-.section-title { 
-  font-family:'Dancing Script',cursive; 
-  color:var(--primary-dark); 
-  font-size:1.6rem; 
-  margin-bottom:8px; 
-}
-
-.input-recado { width:100%; padding:15px; border:2px solid #eee; border-radius:15px; margin:10px 0; }
-
-.btn-jardim { 
-  display:block; width:100%; padding:15px; 
-  background:linear-gradient(45deg,#FF69B4,#C71585); 
-  color:white; border:none; border-radius:50px; 
-  font-size:1.1rem; cursor:pointer; margin:10px 0; 
-  transition:transform .2s, box-shadow .2s; 
-}
-
-.btn-jardim:hover { 
-  transform:scale(1.05); 
-  box-shadow:0 0 20px rgba(255,105,180,.6); 
-}
-
-.recado-card { 
-  background: var(--card-pink); 
-  border-radius:20px; padding:15px; 
-  margin-bottom:15px; text-align:left; 
-  position:relative; 
-}
-
-.recado-card button { 
-  position:absolute; top:10px; right:10px; 
-  background:#C71585; border:none; color:white; 
-  border-radius:50%; width:25px; height:25px; 
-  cursor:pointer; font-weight:bold; display:none; 
-}
-
-/* CARD DE ROLAR PARA BAIXO */
-.card-scroll {
-  background: #ffffff;
-  text-align: center;
-  max-width: 320px;
-  margin: -100px auto 20px auto;
-  border-radius: 20px;
-  padding: 15px 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  position: relative;
-  animation: floatCard 1.5s ease-in-out infinite alternate;
-  opacity: 1; /* nunca desaparece */
+@keyframes floatCard{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-5px)}
 }
 
 .seta-animada{
@@ -145,200 +130,289 @@ body {
   animation:bounce 1s infinite;
 }
 
-/* Leve movimento do card */
-@keyframes floatCard {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-5px); }
+@keyframes bounce{
+  0%,20%,50%,80%,100%{transform:translateY(0)}
+  40%{transform:translateY(10px)}
+  60%{transform:translateY(5px)}
 }
 
-/* Animação da seta */
-@keyframes bounce {
-  0%,20%,50%,80%,100% { transform: translateY(0); }
-  40% { transform: translateY(10px); }
-  60% { transform: translateY(5px); }
+/* MURAL */
+
+.card-box{
+  background:white;
+  border-radius:30px;
+  padding:30px;
+  margin:25px auto;
+  max-width:500px;
+  box-shadow:0 10px 25px rgba(255,105,180,0.15);
+  text-align:center;
 }
 
-/* BOTÃO DE MÚSICA FIXO */
-#btn-musica {
-  position: fixed; bottom: 30px; right: 30px; 
-  width:60px; height:60px; border-radius:50%; 
-  border:3px solid #FF69B4; background:white;
-  display:flex; justify-content:center; align-items:center; 
-  font-size:1.5rem; cursor:pointer; z-index:1000;
-  color:#FF69B4;
+.section-title{
+  font-family:'Dancing Script',cursive;
+  color:var(--primary-dark);
+  font-size:1.6rem;
+  margin-bottom:8px;
 }
 
-/* RODAPÉ */
-.footer-jardim { 
-  text-align:center; padding:30px; 
-  color:var(--primary-dark); font-weight:bold; 
-  font-size:1rem; margin-top:50px; 
+.input-recado{
+  width:100%;
+  padding:15px;
+  border:2px solid #eee;
+  border-radius:15px;
+  margin:10px 0;
 }
 
-/* RESPONSIVO */
-@media(max-width:500px){
-
-  .convite-stage { 
-    width:100%;
-    max-width:420px;
-    margin:auto;
-  }
-
-  .convite-imagem {
-    width:100%;
-    height:100%;
-  }
-
-  .btn-local,.btn-lista,.btn-confirmar{ 
-    width:50px;
-    height:50px;
-  }
-
-  #btn-musica{ 
-    width:50px;
-    height:50px;
-    font-size:1.2rem;
-  }
-
+.btn-jardim{
+  width:100%;
+  padding:15px;
+  background:linear-gradient(45deg,#FF69B4,#C71585);
+  color:white;
+  border:none;
+  border-radius:50px;
+  font-size:1.1rem;
+  cursor:pointer;
 }
+
+.recado-card{
+  background:var(--card-pink);
+  border-radius:20px;
+  padding:15px;
+  margin-bottom:15px;
+  text-align:left;
+  position:relative;
+}
+
+.recado-card button{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#C71585;
+  border:none;
+  color:white;
+  border-radius:50%;
+  width:25px;
+  height:25px;
+  cursor:pointer;
+}
+
+/* BOTÃO MUSICA */
+
+#btn-musica{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:3px solid #FF69B4;
+  background:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:1.5rem;
+  cursor:pointer;
+  z-index:1000;
+}
+
+.footer-jardim{
+  text-align:center;
+  padding:30px;
+  color:#C71585;
+  font-weight:bold;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- VÍDEO DE FUNDO -->
 <div class="video-background-container">
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="jardimencantado.mp4" type="video/mp4">
-  </video>
-  <div class="video-overlay"></div>
+<video autoplay muted loop playsinline class="hero-video">
+<source src="jardimencantado.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
 </div>
 
-<!-- CONVITE PRINCIPAL -->
 <div class="convite-main">
-  <div class="convite-stage">
-    <div class="convite-imagem">
-      <a href="https://maps.app.goo.gl/BCXHNBgK34uYEec66" class="btn-local"></a>
-      <a href="sugestao.html" class="btn-lista"></a>
-      <a href="https://wa.me/5548996612459?text=Confirmando presença" class="btn-confirmar"></a>
-    </div>
-  </div>
+<div class="convite-stage">
+
+<div class="convite-imagem">
+
+<a href="https://maps.app.goo.gl/BCXHNBgK34uYEec66" class="btn-local"></a>
+
+<a href="sugestao.html" class="btn-lista"></a>
+
+<a href="https://wa.me/5548996612459?text=Confirmando presença" class="btn-confirmar"></a>
+
+<a href="https://agapedesignafetivo.com.br/filtrogiovanna/" class="btn-filtro"></a>
+
+</div>
+</div>
 </div>
 
-<!-- CARD ROLE PARA BAIXO -->
-<div class="card-scroll" id="cardRole">
-  <h3 class="section-title">Role para baixo <span class="seta-animada">⬇️</span></h3>
+<div class="card-scroll">
+<h3 class="section-title">
+Role para baixo <span class="seta-animada">⬇️</span>
+</h3>
 </div>
 
-<!-- MURAL DE RECADOS -->
 <div id="mural" class="card-box">
-  <h2 class="section-title">Mural de Recados</h2>
-  <p style="color:#666;margin-bottom:20px;">Deixe uma mensagem para Giovanna! 🥰</p>
-  <form id="form-recado">
-    <textarea id="msg-recado" class="input-recado" placeholder="Escreva seu recado..." rows="4" required></textarea>
-    <input id="nome-recado" class="input-recado" placeholder="Seu nome" required>
-    <button type="submit" class="btn-jardim">Postar Recado</button>
-  </form>
-  <div id="lista-recados" style="margin-top:20px;"></div>
+
+<h2 class="section-title">Mural de Recados</h2>
+
+<p style="color:#666;margin-bottom:20px;">
+Deixe uma mensagem para Giovanna 🥰
+</p>
+
+<form id="form-recado">
+
+<textarea id="msg-recado" class="input-recado" placeholder="Escreva seu recado..." rows="4" required></textarea>
+
+<input id="nome-recado" class="input-recado" placeholder="Seu nome" required>
+
+<button type="submit" class="btn-jardim">Postar Recado</button>
+
+</form>
+
+<div id="lista-recados" style="margin-top:20px;"></div>
+
 </div>
 
-<!-- MÚSICA DE FUNDO -->
 <audio id="musica-fundo" loop autoplay>
-  <source src="jardim.mp3" type="audio/mpeg">
+<source src="jardim.mp3" type="audio/mpeg">
 </audio>
+
 <button id="btn-musica">🎵</button>
 
-<!-- RODAPÉ -->
 <footer class="footer-jardim">
-  Feito com carinho por Criis Santana 🦋
+Feito com carinho por Criis Santana 🦋
 </footer>
 
 <script>
-const formRecado = document.getElementById('form-recado');
-const listaRecados = document.getElementById('lista-recados');
-const ADMIN_PASSWORD = "1323";
+
+const formRecado=document.getElementById('form-recado')
+const listaRecados=document.getElementById('lista-recados')
+
+const ADMIN_PASSWORD="1323"
 
 function carregarRecados(){
-  const recados = JSON.parse(localStorage.getItem('recados')) || [];
-  listaRecados.innerHTML = '';
-  recados.forEach((r,index)=>{
-    const div = document.createElement('div');
-    div.className = "recado-card";
-    div.innerHTML = `<strong>${r.nome}:</strong> ${r.msg}`;
-    const btn = document.createElement('button');
-    btn.innerText = "×";
-    btn.onclick = ()=> {
-      const senha = prompt("Digite a senha para apagar o recado:");
-      if(senha===ADMIN_PASSWORD){
-        recados.splice(index,1);
-        localStorage.setItem('recados',JSON.stringify(recados));
-        carregarRecados();
-      } else { alert("Senha incorreta!⚠️"); }
-    };
-    btn.style.display="block";
-    div.appendChild(btn);
-    listaRecados.appendChild(div);
-  });
+
+const recados=JSON.parse(localStorage.getItem('recados'))||[]
+
+listaRecados.innerHTML=''
+
+recados.forEach((r,index)=>{
+
+const div=document.createElement('div')
+
+div.className="recado-card"
+
+div.innerHTML=`<strong>${r.nome}:</strong> ${r.msg}`
+
+const btn=document.createElement('button')
+
+btn.innerText="×"
+
+btn.onclick=()=>{
+
+const senha=prompt("Digite a senha para apagar o recado")
+
+if(senha===ADMIN_PASSWORD){
+
+recados.splice(index,1)
+
+localStorage.setItem('recados',JSON.stringify(recados))
+
+carregarRecados()
+
+}else{
+
+alert("Senha incorreta")
+
 }
 
-function soltarConfetes(){ confetti({ particleCount:120, spread:70, origin:{y:0.6} }); }
+}
 
-formRecado.addEventListener('submit', function(e){
-  e.preventDefault();
-  const nome = document.getElementById('nome-recado').value.trim();
-  const msg = document.getElementById('msg-recado').value.trim();
-  if(!nome||!msg) return;
-  const recados = JSON.parse(localStorage.getItem('recados')) || [];
-  recados.push({nome,msg});
-  localStorage.setItem('recados',JSON.stringify(recados));
-  carregarRecados();
-  soltarConfetes();
-  this.reset();
-});
+div.appendChild(btn)
 
-const musica = document.getElementById('musica-fundo');
-const btnMusica = document.getElementById('btn-musica');
+listaRecados.appendChild(div)
+
+})
+
+}
+
+function soltarConfetes(){
+
+confetti({
+
+particleCount:120,
+
+spread:70,
+
+origin:{y:0.6}
+
+})
+
+}
+
+formRecado.addEventListener('submit',function(e){
+
+e.preventDefault()
+
+const nome=document.getElementById('nome-recado').value.trim()
+
+const msg=document.getElementById('msg-recado').value.trim()
+
+if(!nome||!msg)return
+
+const recados=JSON.parse(localStorage.getItem('recados'))||[]
+
+recados.push({nome,msg})
+
+localStorage.setItem('recados',JSON.stringify(recados))
+
+carregarRecados()
+
+soltarConfetes()
+
+this.reset()
+
+})
+
+const musica=document.getElementById('musica-fundo')
+
+const btnMusica=document.getElementById('btn-musica')
 
 function toggleMusica(){
-  if(musica.paused){
-    musica.play();
-    btnMusica.innerText = "⏸";
-    btnMusica.style.color = "#FF69B4";
-  } else {
-    musica.pause();
-    btnMusica.innerText = "🎵";
-    btnMusica.style.color = "#000";
-  }
+
+if(musica.paused){
+
+musica.play()
+
+btnMusica.innerText="⏸"
+
+}else{
+
+musica.pause()
+
+btnMusica.innerText="🎵"
+
 }
 
-window.addEventListener('load', ()=>{ musica.play().catch(()=>{}); btnMusica.innerText = musica.paused ? "🎵" : "⏸"; });
-btnMusica.addEventListener('click', toggleMusica);
+}
 
-carregarRecados();
+btnMusica.addEventListener('click',toggleMusica)
 
-// 1. Bloquear o botão direito do mouse
-  document.addEventListener('contextmenu', event => event.preventDefault());
+window.addEventListener('load',()=>{
 
-  // 2. Bloquear atalhos de teclado (Ctrl+U, Ctrl+S, F12, etc.)
-  document.addEventListener('keydown', function (event) {
-    // Tecla 'u' (code 85) + CTRL
-    if (event.ctrlKey && event.keyCode === 85) {
-      event.preventDefault();
-    }
-    // Tecla 's' (code 83) + CTRL (evita salvar a página)
-    if (event.ctrlKey && event.keyCode === 83) {
-      event.preventDefault();
-    }
-    // Tecla F12 (code 123)
-    if (event.keyCode === 123) {
-      event.preventDefault();
-    }
-  });
-  
-  
+musica.play().catch(()=>{})
+
+})
+
+carregarRecados()
+
 </script>
 
 </body>
 </html>
-
-
