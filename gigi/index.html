@@ -69,10 +69,18 @@ body {
 }
 
 /* BOTÕES SOBRE A IMAGEM */
+
 .btn-local, .btn-lista, .btn-confirmar { 
-  position:absolute; width:60px; height:60px; border-radius:50%; 
-  background: transparent; border:none; cursor:pointer; 
+  position:absolute;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background: rgba(255,0,0,0.35); /* vermelho transparente */
+  border:3px solid red;
+  cursor:pointer;
 }
+
+
 .btn-local { top:72%; left:48%; }
 .btn-lista { top:71%; left:58%; }
 .btn-confirmar { top:71%; left:37%; }
@@ -105,12 +113,32 @@ body {
 .footer-jardim { text-align:center; padding:30px; color:var(--primary-dark); font-weight:bold; font-size:1rem; margin-top:50px; }
 
 /* RESPONSIVO */
+
 @media(max-width:500px){
-  .convite-stage { max-width:90vw; }
-  .convite-imagem { width:90%; }
-  .btn-local,.btn-lista,.btn-confirmar{ width:50px;height:50px; }
-  #btn-musica{ width:50px;height:50px;font-size:1.2rem; }
+  .convite-stage { 
+    width:100%;
+    max-width:420px;
+    margin:auto;
+  }
+
+  .convite-imagem {
+    width:100%;
+    height:100%;
+  }
+
+  .btn-local,.btn-lista,.btn-confirmar{ 
+    width:50px;
+    height:50px;
+  }
+
+  #btn-musica{ 
+    width:50px;
+    height:50px;
+    font-size:1.2rem;
+  }
 }
+
+
 </style>
 </head>
 
