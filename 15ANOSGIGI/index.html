@@ -4,221 +4,314 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <title>15 ANOS GIOVANNA ✨</title>
+
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: black;
-  }
 
-  /* Palco 9:16 */
-  #palco {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    max-width: 540px;
-    max-height: 960px;
-    background: black;
-  }
+html, body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+background:black;
+}
 
-  /* Capa inicial */
-  #capa {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-  }
-  #capa img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+/* palco */
+#palco{
+position:relative;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+width:100vw;
+height:100vh;
+max-width:540px;
+max-height:960px;
+background:black;
+}
 
-  /* Vídeo e botões invisíveis */
-  #videoContainer {
-    position: absolute;
-    inset: 0;
-    display: none;
-  }
-  video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+/* capa */
+#capa{
+position:absolute;
+inset:0;
+z-index:10;
+}
 
-  /* Botões invisíveis mapeados */
-  .btn-map {
-    position: absolute;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    z-index: 15;
-    background: transparent; /* só para referência */
-  }
-  #btn1 { top: 77%; left: 44%; }
-  #btn2 { top: 77%; left: 21%; }
-  #btn3 { top: 78%; left: 66%; }
+#capa img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
 
-  /* POPUP sugestão de presente */
-  #popup {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 30;
-    flex-direction: column;
-  }
-  #popup img {
-    max-width: 100%;
-    max-height:83%;
-    border-radius: 12px;
-    border: 2px solid white;
-    margin-bottom: 20px;
-  }
-  #closePopup {
-    margin-bottom: 10px;
-    padding: 10px 16px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    background: #9660a8;
-    color: white;
-    cursor: pointer;
-  }
+/* video */
+#videoContainer{
+position:absolute;
+inset:0;
+display:none;
+}
 
-  /* Botão PIX invisível */
-  #pixBtn {
-    position: absolute;
-    width:150px;   /* ajustar para tamanho da imagem da chave */
-    height: 65px;   /* ajustar altura */
-    top: 75%;       /* ajustar posição */
-    z-index: 31;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-  }
+video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* BOTÕES INVISÍVEIS */
+
+.btn-map{
+position:absolute;
+border-radius:50%;
+width:80px;
+height:80px;
+z-index:15;
+background:transparent;
+border:none;
+outline:none;
+cursor:pointer;
+
+-webkit-tap-highlight-color: transparent;
+tap-highlight-color: transparent;
+}
+
+#btn1{ top:77%; left:44%; }
+#btn2{ top:77%; left:21%; }
+#btn3{ top:78%; left:66%; }
+
+/* popup */
+
+#popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:30;
+flex-direction:column;
+}
+
+#popup img{
+max-width:100%;
+max-height:83%;
+border-radius:12px;
+border:2px solid white;
+margin-bottom:20px;
+}
+
+#closePopup{
+margin-bottom:10px;
+padding:10px 16px;
+font-size:16px;
+border:none;
+border-radius:8px;
+background:#9660a8;
+color:white;
+cursor:pointer;
+}
+
+/* botão pix invisível */
+
+#pixBtn{
+position:absolute;
+width:85px;
+height:45px;
+top:67%;
+z-index:31;
+cursor:pointer;
+background:transparent;
+border:none;
+outline:none;
+
+-webkit-tap-highlight-color: transparent;
+tap-highlight-color: transparent;
+}
+
+/* aviso pix copiado */
+
+#pixAviso{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+background:#9660a8;
+color:white;
+padding:10px 18px;
+border-radius:20px;
+font-size:14px;
+opacity:0;
+transition:opacity 0.4s;
+z-index:50;
+pointer-events:none;
+}
+
 </style>
 </head>
+
 <body>
 
 <div id="palco">
-  <!-- Capa inicial -->
-  <div id="capa">
-    <img src="capa.png" alt="Convite">
-  </div>
 
-  <!-- Vídeo + botões invisíveis -->
-  <div id="videoContainer">
-    <video id="video" muted playsinline>
-      <source src="video.mp4" type="video/mp4">
-    </video>
-    <a class="btn-map" id="btn1" href="https://maps.app.goo.gl/AoRhWLp8GDK3EoCv5" target="_blank"></a>
-    <a class="btn-map" id="btn2" href="https://wa.me/5548996612459?text=Quero%20confirmar%20minha%20presen%C3%A7a%20na%20festa%20da%20Giovanna!%20%E2%9C%A8" target="_blank"></a>
-    <div class="btn-map" id="btn3"></div> <!-- Abre popup -->
-  </div>
-
-  <!-- Música -->
-  <audio id="musica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
+<div id="capa">
+<img src="capa.png" alt="Convite">
 </div>
 
-<!-- POPUP -->
+<div id="videoContainer">
+
+<video id="video" muted playsinline>
+<source src="video.mp4" type="video/mp4">
+</video>
+
+<a class="btn-map" id="btn1"
+href="https://maps.app.goo.gl/AoRhWLp8GDK3EoCv5"
+target="_blank"></a>
+
+<a class="btn-map" id="btn2"
+href="https://wa.me/5548996612459?text=Quero%20confirmar%20minha%20presen%C3%A7a%20na%20festa%20da%20Giovanna!%20%E2%9C%A8"
+target="_blank"></a>
+
+<div class="btn-map" id="btn3"></div>
+
+</div>
+
+<audio id="musica" loop preload="auto">
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<!-- popup -->
+
 <div id="popup">
-  <img src="sugestao.png" alt="Sugestão de Presente">
-  <button id="closePopup">X Fechar</button>
 
-  <!-- Botão invisível PIX -->
-  <button id="pixBtn"></button>
+<img src="sugestao.png">
+
+<button id="closePopup">X Fechar</button>
+
+<button id="pixBtn"></button>
+
 </div>
+
+<!-- aviso pix -->
+
+<div id="pixAviso">Chave PIX copiada ✅</div>
 
 <script>
-const capa = document.getElementById("capa");
-const videoContainer = document.getElementById("videoContainer");
-const video = document.getElementById("video");
-const musica = document.getElementById("musica");
 
-const btn3 = document.getElementById("btn3");
-const popup = document.getElementById("popup");
-const closePopup = document.getElementById("closePopup");
-const pixBtn = document.getElementById("pixBtn");
+const capa = document.getElementById("capa")
+const videoContainer = document.getElementById("videoContainer")
+const video = document.getElementById("video")
+const musica = document.getElementById("musica")
 
-// Sua chave PIX
-const chavePix = "48996612459";
+const btn3 = document.getElementById("btn3")
+const popup = document.getElementById("popup")
+const closePopup = document.getElementById("closePopup")
+const pixBtn = document.getElementById("pixBtn")
+const pixAviso = document.getElementById("pixAviso")
 
-let startX = null;
-let startY = null;
-let distance = 0;
+const chavePix = "48996612459"
 
-// Esfregar capa
-document.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
-});
-document.addEventListener("touchmove", e => {
-  if(startX === null) return;
-  let dx = e.touches[0].clientX - startX;
-  let dy = e.touches[0].clientY - startY;
-  distance += Math.sqrt(dx*dx + dy*dy);
-  startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
+let startX = null
+let startY = null
+let distance = 0
 
-  if(distance > 200){
-    capa.style.display = "none";
-    videoContainer.style.display = "block";
-    video.play();
-    musica.volume = 0.6;
-    musica.play();
-    startX = null;
-    startY = null;
-  }
-});
+document.addEventListener("touchstart",e=>{
+startX = e.touches[0].clientX
+startY = e.touches[0].clientY
+})
 
-// Abrir popup ao clicar no botão de presente
-btn3.addEventListener("click", () => {
-  popup.style.display = "flex";
-});
+document.addEventListener("touchmove",e=>{
 
-// Fechar popup
-closePopup.addEventListener("click", () => {
-  popup.style.display = "none";
-});
+if(startX===null)return
 
-// Copiar PIX invisível
-pixBtn.addEventListener("click", () => {
-  navigator.clipboard.writeText(chavePix).then(() => {
-    alert("Chave PIX copiada! ✅");
-  });
-});
-  
-// Ajustar palco 9:16
-const palco = document.getElementById('palco');
-function ajustarPalco() {
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
-  let w = vw;
-  let h = w * (16/9);
-  if(h > vh){
-    h = vh;
-    w = h * (9/16);
-  }
-  palco.style.width = w + 'px';
-  palco.style.height = h + 'px';
+let dx = e.touches[0].clientX-startX
+let dy = e.touches[0].clientY-startY
+
+distance += Math.sqrt(dx*dx + dy*dy)
+
+startX = e.touches[0].clientX
+startY = e.touches[0].clientY
+
+if(distance>200){
+
+capa.style.display="none"
+videoContainer.style.display="block"
+
+video.play()
+
+musica.volume = 0.6
+musica.muted = false
+
+let playPromise = musica.play()
+
+if(playPromise!==undefined){
+
+playPromise.catch(()=>{
+
+document.body.addEventListener("click",()=>{
+musica.play()
+},{once:true})
+
+})
+
 }
-ajustarPalco();
-window.addEventListener('resize', ajustarPalco);
-window.addEventListener('orientationchange', ajustarPalco);
+
+startX=null
+startY=null
+
+}
+
+})
+
+btn3.addEventListener("click",()=>{
+popup.style.display="flex"
+})
+
+closePopup.addEventListener("click",()=>{
+popup.style.display="none"
+})
+
+pixBtn.addEventListener("click",()=>{
+
+navigator.clipboard.writeText(chavePix).then(()=>{
+
+pixAviso.style.opacity="1"
+
+setTimeout(()=>{
+pixAviso.style.opacity="0"
+},2000)
+
+})
+
+})
+
+const palco = document.getElementById("palco")
+
+function ajustarPalco(){
+
+const vw = window.innerWidth
+const vh = window.innerHeight
+
+let w = vw
+let h = w*(16/9)
+
+if(h>vh){
+h = vh
+w = h*(9/16)
+}
+
+palco.style.width = w+"px"
+palco.style.height = h+"px"
+
+}
+
+ajustarPalco()
+
+window.addEventListener("resize",ajustarPalco)
+window.addEventListener("orientationchange",ajustarPalco)
+
 </script>
 
 </body>
