@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>15 ANOS GIOVANNA ✨</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+  }
+
+  /* Palco 9:16 */
+  #palco {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    max-width: 540px;
+    max-height: 960px;
+    background: black;
+  }
+
+  /* Capa inicial */
+  #capa {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+  }
+  #capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Vídeo e botões invisíveis */
+  #videoContainer {
+    position: absolute;
+    inset: 0;
+    display: none;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Botões invisíveis mapeados */
+  .btn-map {
+    position: absolute;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    z-index: 15;
+    background: transparent; /* só para referência */
+  }
+  #btn1 { top: 77%; left: 44%; }
+  #btn2 { top: 77%; left: 21%; }
+  #btn3 { top: 78%; left: 66%; }
+
+  /* POPUP sugestão de presente */
+  #popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    flex-direction: column;
+  }
+  #popup img {
+    max-width: 100%;
+    max-height:83%;
+    border-radius: 12px;
+    border: 2px solid white;
+    margin-bottom: 20px;
+  }
+  #closePopup {
+    margin-bottom: 10px;
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #9660a8;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Botão PIX invisível */
+  #pixBtn {
+    position: absolute;
+    width: 85px;   /* ajustar para tamanho da imagem da chave */
+    height: 45px;   /* ajustar altura */
+    top: 67%;       /* ajustar posição */
+    z-index: 31;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="palco">
+  <!-- Capa inicial -->
+  <div id="capa">
+    <img src="capa.png" alt="Convite">
+  </div>
+
+  <!-- Vídeo + botões invisíveis -->
+  <div id="videoContainer">
+    <video id="video" muted playsinline>
+      <source src="video.mp4" type="video/mp4">
+    </video>
+    <a class="btn-map" id="btn1" href="https://maps.app.goo.gl/AoRhWLp8GDK3EoCv5" target="_blank"></a>
+    <a class="btn-map" id="btn2" href="https://wa.me/5548996612459?text=Quero%20confirmar%20minha%20presen%C3%A7a%20na%20festa%20da%20Giovanna!%20%E2%9C%A8" target="_blank"></a>
+    <div class="btn-map" id="btn3"></div> <!-- Abre popup -->
+  </div>
+
+  <!-- Música -->
+  <audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+  <img src="sugestao.png" alt="Sugestão de Presente">
+  <button id="closePopup">X Fechar</button>
+
+  <!-- Botão invisível PIX -->
+  <button id="pixBtn"></button>
+</div>
+
+<script>
+const capa = document.getElementById("capa");
+const videoContainer = document.getElementById("videoContainer");
+const video = document.getElementById("video");
+const musica = document.getElementById("musica");
+
+const btn3 = document.getElementById("btn3");
+const popup = document.getElementById("popup");
+const closePopup = document.getElementById("closePopup");
+const pixBtn = document.getElementById("pixBtn");
+
+// Sua chave PIX
+const chavePix = "48996612459";
+
+let startX = null;
+let startY = null;
+let distance = 0;
+
+// Esfregar capa
+document.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+});
+document.addEventListener("touchmove", e => {
+  if(startX === null) return;
+  let dx = e.touches[0].clientX - startX;
+  let dy = e.touches[0].clientY - startY;
+  distance += Math.sqrt(dx*dx + dy*dy);
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+
+  if(distance > 200){
+    capa.style.display = "none";
+    videoContainer.style.display = "block";
+    video.play();
+    musica.volume = 0.6;
+    musica.play();
+    startX = null;
+    startY = null;
+  }
+});
+
+// Abrir popup ao clicar no botão de presente
+btn3.addEventListener("click", () => {
+  popup.style.display = "flex";
+});
+
+// Fechar popup
+closePopup.addEventListener("click", () => {
+  popup.style.display = "none";
+});
+
+// Copiar PIX invisível
+pixBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(chavePix).then(() => {
+    alert("Chave PIX copiada! ✅");
+  });
+});
+  
+// Ajustar palco 9:16
+const palco = document.getElementById('palco');
+function ajustarPalco() {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  let w = vw;
+  let h = w * (16/9);
+  if(h > vh){
+    h = vh;
+    w = h * (9/16);
+  }
+  palco.style.width = w + 'px';
+  palco.style.height = h + 'px';
+}
+ajustarPalco();
+window.addEventListener('resize', ajustarPalco);
+window.addEventListener('orientationchange', ajustarPalco);
+</script>
+
+</body>
+</html>
